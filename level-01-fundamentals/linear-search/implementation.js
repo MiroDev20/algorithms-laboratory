@@ -1,10 +1,26 @@
 function linearSearch (target, array)
 {
-    for (let i = 0; i < array.length; i++)
+    let result;
+
+    if (!typeof target === 'number')
     {
-        if (array[i] === target)
+        result = `A number was expected, but it was obtained ${typeof target}`
+    }
+    else
+    {
+        if (!array instanceof Array)
         {
-            result = array.indexOf(array[i])
+            result = `An array was expected, but it was obtained ${typeof array}`
+        }
+        else
+        {
+            for (let i = 0; i < array.length; i++)
+            {
+                if (array[i] === target)
+                {
+                    result = array.indexOf(array[i])
+                }
+            }
         }
     }
 
