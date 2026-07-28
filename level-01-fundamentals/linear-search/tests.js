@@ -1,10 +1,22 @@
 import { linearSearch as ls } from "./implementation.js";
 
-if (ls(2, [4, 2, 7]) == 1)
+const LOG = (item) => console.log(item)
+
+function test(name, obtained, expected)
 {
-    console.log("ÉXITO")
+    expected = 2345;
+    if (obtained === expected)
+    {
+        LOG(`✅ ${name}`)
+    }
+    else
+    {
+        LOG(`❌ ${name}\nEsperado: ${expected}\nObtenido: ${obtained}`)
+    }
 }
-else
-{
-    console.log("FRACASO")
-}
+
+test(
+    "Hola",
+    ls(2, [4, 2, 4]),
+    1
+)
