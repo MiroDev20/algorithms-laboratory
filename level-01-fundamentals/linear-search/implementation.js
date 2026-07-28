@@ -2,13 +2,13 @@ function linearSearch (target, array)
 {
     let result;
 
-    if (!typeof target === 'number') // 🔥 FIXME: fix type validation
+    if (typeof target !== 'number')
     {
         result = `A number was expected, but it was obtained ${typeof target}`
     }
     else
     {
-        if (!array instanceof Array) // 🔥 FIXME: fix type validation
+        if (!Array.isArray(array))
         {
             result = `An array was expected, but it was obtained ${typeof array}`
         }
@@ -18,13 +18,13 @@ function linearSearch (target, array)
             {
                 if (array[i] === target)
                 {
-                    result = array.indexOf(array[i]) // 🔧 REFACTOR: innecesary use of `.indexOf(array[i])`
+                    result = i
                 }
             }
         }
     }
 
-    return result || -1 // 🔥 FIXME: fix return. When result = 0 returns -1 because consider it falsy
+    return result >= 0 ? result : -1 
 }
 
 console.log(linearSearch(1, [1, 5, 2, 7, 5, 8, 0, 3]))
