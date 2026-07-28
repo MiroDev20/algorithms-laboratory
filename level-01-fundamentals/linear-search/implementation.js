@@ -19,6 +19,7 @@ export function linearSearch (target, array)
                 if (array[i] === target)
                 {
                     result = i
+                    break
                 }
             }
         }
