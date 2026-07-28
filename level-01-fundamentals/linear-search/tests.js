@@ -4,7 +4,6 @@ const LOG = (item) => console.log(item)
 
 function test(name, obtained, expected)
 {
-    expected = 2345;
     if (obtained === expected)
     {
         LOG(`✅ ${name}`)
@@ -16,7 +15,31 @@ function test(name, obtained, expected)
 }
 
 test(
-    "Hola",
-    ls(2, [4, 2, 4]),
+    "Array vacío",
+    ls(2, []),
+    -1
+)
+
+test(
+    "Elemento en índice 0",
+    ls(5, [5, 4, 8]),
+    0
+)
+
+test(
+    "Elemento inexistente",
+    ls(9, [3, 7, 0]),
+    -1
+)
+
+test(
+    "Elemento al final",
+    ls(6, [9, 2, 6]),
+    2
+)
+
+test(
+    "Elementos repetidos",
+    ls(2, [4, 2, 5, 1, 2]),
     1
 )
