@@ -1,4 +1,4 @@
-function linearSearch (target, array)
+export function linearSearch (target, array)
 {
     let result;
 
@@ -26,5 +26,3 @@ function linearSearch (target, array)
 
     return result >= 0 ? result : -1 
 }
-
-console.log(linearSearch(1, [1, 5, 2, 7, 5, 8, 0, 3]))
