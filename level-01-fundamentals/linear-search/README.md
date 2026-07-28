@@ -1,7 +1,7 @@
 # Linear Search
 
 El algoritmo *Linear Search* es sencillo de entender pues ya lo he usado antes
-fuera del hámbito de la programación.
+fuera del ámbito de la programación.
 
 - Buscar un emoji
 - Buscar un par de medias
@@ -40,4 +40,4 @@ Además ni siquiera requiere datos ordenados.
 2. Comparar con el objetivo
 3. Si coincide → retornar índice
 4. Si no → continuar al siguiente
-5. Si llega al final → retornar -1 (eso lo remodendable)
+5. Si llega al final → retornar -1 (es lo recomendable)
