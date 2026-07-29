@@ -25,5 +25,5 @@ export function linearSearch (target, array)
         }
     }
 
-    return result >= 0 ? result : -1 
+    return typeof result === 'number' ? result : result ?? -1
 }

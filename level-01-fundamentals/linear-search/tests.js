@@ -43,3 +43,17 @@ test(
     ls(2, [4, 2, 5, 1, 2]),
     1
 )
+
+// Prueba de mensajes de errores
+
+test(
+    "Target es un string",
+    ls("x", [1, 2, 3]),
+    `A number was expected, but it was obtained string`
+)
+
+test(
+    "Array es un string",
+    ls(5, "abc"),
+    `An array was expected, but it was obtained string`
+)
