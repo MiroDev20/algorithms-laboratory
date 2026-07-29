@@ -7,7 +7,7 @@ algorithms/
 │   │   ├── README.md
 │   │   ├── implementation.js
 │   │   ├── tests.js
-│   │   └── notes.md
+│   │   └── journal.md
 │   ├── binary-search/
 │   └── ...
 │
