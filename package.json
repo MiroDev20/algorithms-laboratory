@@ -1,0 +1,13 @@
+{
+  "name": "algorithms-laboratory",
+  "version": "1.0.0",
+  "description": "Repositorio dedicado al estudio e implementación de algoritmos, desde los fundamentos hasta técnicas avanzadas.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
