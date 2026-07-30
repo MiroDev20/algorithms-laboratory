@@ -82,3 +82,12 @@ Creo que esta opción es mejor porque en vez de verificar si `typeof result ====
 verifica que sea diferente de null/undefined y además se elimina la comparación `result >= 0`
 la cual está de más y quise mantener en la primera solución solo porque la original (la que causó el problema)
 también lo hacía.
+
+## Throw Error
+
+Hablando con Claude sobre el estado del algoritmo, me recomendó usar `throw new Error()` en lugar de `console.log()`, ya que de esta manera se evita que el programa interprete como mensajes de consola lo que en realidad son errores de uso.
+
+Una vez reemplazados los `console.log()` por `throw new Error()`, no es necesaria la lógica del último `return`.
+
+Además, debería capturar los nuevos errores en los tests.
+
