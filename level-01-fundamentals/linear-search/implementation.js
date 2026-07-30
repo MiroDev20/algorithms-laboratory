@@ -1,16 +1,14 @@
 export function linearSearch (target, array)
 {
-    let result;
-
     if (typeof target !== 'number')
     {
-        result = `A number was expected, but it was obtained ${typeof target}`
+        throw new Error(`A number was expected, but it was obtained ${typeof target}`)
     }
     else
     {
         if (!Array.isArray(array))
         {
-            result = `An array was expected, but it was obtained ${typeof array}`
+            throw new Error(`An array was expected, but it was obtained ${typeof array}`)
         }
         else
         {
@@ -18,12 +16,11 @@ export function linearSearch (target, array)
             {
                 if (array[i] === target)
                 {
-                    result = i
-                    break
+                    return i
                 }
             }
         }
     }
 
-    return typeof result === 'number' ? result : result ?? -1
+    return -1
 }
