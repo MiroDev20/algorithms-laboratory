@@ -26,7 +26,7 @@ para convertir este repositorio en una referencia de estudio a largo plazo.
 
 ### 1. Fundamentos
 
-- [ ] Búsqueda lineal
+- [x] Búsqueda lineal
 - [ ] Búsqueda binaria
 - [ ] Recursión
 - [ ] Algoritmo de Euclides (MCD)

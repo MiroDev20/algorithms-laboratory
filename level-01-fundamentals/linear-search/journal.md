@@ -22,11 +22,11 @@ repositorio.
 En el próximo ejercicio le pediré a Claude que me diga cómo se analizan los
 algoritmos usando este concepto.
 
-He visto que se usan tablas, no parece dífícil.
+He visto que se usan tablas, no parece difícil.
 
 ## Problema con los mensajes de error
 
-Dado que cualquier string (que no contenga números) es menor a 0 no se pueden
+Dado que cualquier string (que no contenga números) es menor a 0, no se pueden
 mostrar los mensajes de entrada inválida.
 
 Claude me sugirió: `return typeof result === 'number' ? result : -1`
@@ -45,14 +45,14 @@ entendió lo que quise decir y lo corrigió.
 Y yo implementé:
 `return (typeof result === 'number' && result >= 0) || typeof result === 'string' ? result : -1`
 
-Al final me propuso otra solución más limpia: typeof result === 'number' && result >= 0 ? result : result ?? -1
+Al final me propuso otra solución más limpia: `typeof result === 'number' && result >= 0 ? result : result ?? -1`
 
-Dado que tengo en frente tres soluciones tengo que evaluar la que provocó el problema
-y después sus dos posibles soluciones
+Dado que tengo frente a mí tres soluciones, tengo que evaluar la que provocó el problema
+y después sus dos posibles soluciones.
 
 ## Responsable del problema
 
-`return result >= 0 ? result : -1 `
+`return result >= 0 ? result : -1`
 
 ### ¿Por qué?
 
@@ -60,9 +60,9 @@ Se supone que en caso de recibir un input de tipo 'string' (en `target` o `array
 `result` guardaría un mensaje indicando el error, pero el return que hice
 dice "si result >= 0 devuélvelo, sino devuelve -1"
 
-O sea que solo se devolverán valores numéricos mayores a 0 y dado que ningún
-string (a menos que contenga un número) es mayor a 0 nunca se mostrarán los
-mensajes de error y en cambio se devolverá -1.
+O sea que solo se devolverán valores numéricos mayores o iguales a 0, y dado que ningún
+string (a menos que contenga un número) es mayor a 0, nunca se mostrarán los
+mensajes de error y, en cambio, se devolverá -1.
 
 ### Primera Solución
 
@@ -78,7 +78,7 @@ o es un string devuélvelo, sino devuelve -1.
 Traducido: si result es de tipo 'number' devuélvelo, sino
 ¿result es null/undefined? de serlo devuelve -1, caso contrario devuelve result.
 
-Creo que esta opción es mejor porque en vez de verificar si `typeof result ==== 'string'`
+Creo que esta opción es mejor porque en vez de verificar si `typeof result === 'string'`
 verifica que sea diferente de null/undefined y además se elimina la comparación `result >= 0`
 la cual está de más y quise mantener en la primera solución solo porque la original (la que causó el problema)
 también lo hacía.
@@ -91,3 +91,39 @@ Una vez reemplazados los `console.log()` por `throw new Error()`, no es necesari
 
 Además, debería capturar los nuevos errores en los tests.
 
+## Captura de Excepciones en `tests.js`
+
+Bien, implementé la captura de excepciones gracias a que DeepSeek
+(no Claude) me dio una breve explicación de cómo hacerlo.
+
+El problema principal era que al pasar como argumento la función
+linearSearch (ls) **se ejecutaba inmediatamente** para poder devolver algo a
+`obtained`, y cuando se lanzaba un error, se detenía todo.
+
+Obviamente no podía crear dentro de los parámetros de `test` (la función)
+la lógica necesaria para capturar el error, así que tenía que evitar que
+este se lanzara de inmediato y, para eso, tenía que cambiar el momento en
+el que se ejecuta la función `ls`.
+
+La solución es bastante simple: en vez de pasarla directamente, lo haré como
+callback, ejecutándola dentro de `test` en el interior de un bloque `try`
+esperando el error.
+
+Pude haber ido a `implementation.js` y retornar `linearSearch` dentro de algo
+como `function callback(target, array)` (muy probablemente eso habría hecho), pero
+la ballena me mostró algo tan eficaz como sencillo: en `test.js` meter las
+llamadas a `ls` en arrow functions de forma que se asocie a un nuevo parámetro
+de `test` (algo como fun, callback o fn) después ejecutarla dentro de un bloque
+`try`, tal cual lo comenté más arriba.
+
+1. Primero removí obtained de los parámetros de `test` (porque ya no recibiría)
+    el resultado de `ls` sino la propia función `ls`
+2. Agregué el nuevo llamado fn (a partir de aquí, si bien no había reemplazado el
+    segundo argumento en las llamadas a `test` por las arrow functions, lo di por hecho).
+3. Reutilicé obtained para guardar el return de fn (así evito tocar los condicionales)
+4. En caso de lanzar error vuelvo a usar obtained para guardarlo.
+5. Por último hice realidad el supuesto que di por hecho y agregué las arrow
+    functions en las llamadas a `test`.
+
+Todavía hay otras cosas que añadirle a este algoritmo, pero ya le he dedicado
+mucho, así que avanzaré al siguiente y volveré a este en un futuro.
