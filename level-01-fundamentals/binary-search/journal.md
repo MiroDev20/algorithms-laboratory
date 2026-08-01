@@ -19,3 +19,16 @@ procedimiento se repite hasta dar con el elemento buscado.
 
 Aunque entendí el algoritmo tengo una duda en cuanto a su implementación: ¿qué
 pasa si la longitud de la lista es impar?
+
+Tomé la decisión de reemplazar el contenido de los `README.md` por explicaciones
+sencillas hechas por DeepSeek para tener una guía de consulta y mantener
+`journal.md` como un diario sobre lo que aprendo, dudas que tenga, razonamiento,
+y otras ideas.
+
+En la explicación de DeepSeek leí algo sobre el uso de límites (uno inicial y
+uno final) para aplicar el algoritmo, cosa que me sonó a punteros y pese a no
+estar relacionado con la vaga idea que tengo de la conversión a código de
+Binary Search lo tendré en cuenta.
+
+Tampoco me dijo nada sobre que hacer si la longitud es impar así que lo
+averiguaré en la practica.
