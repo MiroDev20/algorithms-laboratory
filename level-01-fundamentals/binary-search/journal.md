@@ -120,3 +120,30 @@ Para solucionarlo, definí una variable llamada `string` en los tests y utilicé
 `typeof string` para generar el mensaje esperado. De esta forma, el valor
 obtenido por `typeof` coincide con el tipo del argumento que realmente se está
 pasando a la función.
+
+## Complejidad Temporal
+
+### Mejor caso
+
+Asumiendo que el elemento buscado esté en el centro de la lista: O(1) ya que
+solo requiere de una comparación.
+
+### Caso promedio
+
+En cada iteración se elimina aproximadamente la mitad de los elementos
+restantes, reduciendo el problema de tamaño N a N/2.
+
+Esto resulta en una complejidad de O(log₂ n), donde n es el número de elementos
+en la lista ordenada.
+
+### Peor caso
+
+El elemento está al final de las divisiones o ni siquiera existe.
+
+## Complejidad espacial
+
+Solo usa 3 variables:
+
+- `inicio`
+- `final`
+- `medio`
