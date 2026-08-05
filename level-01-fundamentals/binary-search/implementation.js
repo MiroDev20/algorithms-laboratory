@@ -8,11 +8,11 @@ function binarySearch(target, array)
         }
         else if (!Array.isArray(array))
         {
-            throw new Error(`Se esperaba un array, pero se recibió ${typeof array}`)
+            throw new Error(`Se esperaba un array, pero se recibió ${typeof array}`);
         }
         else if (array.length === 0)
         {
-            throw new Error(`El array está vacío`)
+            throw new Error(`El array está vacío`);
         }
         else
         {
@@ -20,16 +20,14 @@ function binarySearch(target, array)
 
             let start = 0;
             let end = array.length - 1;
-
-            let located = false;
-
-            while (!located)
+    
+            while (start <= end)
             {
                 mid = Math.floor((start + end) / 2);
 
                 if (array[mid] == target)
                 {
-                    located = true;
+                    return mid;
                 }
                 else if (array[mid] > target)
                 {
@@ -40,13 +38,11 @@ function binarySearch(target, array)
                     start = mid + 1;
                 }
             }
-            return mid;
+            throw new Error('Elemento no encontrado');
         }
     }
     catch(error)
     {
-        console.log(error.message)
+        console.log(error.message);
     }
 }
-
-console.log(binarySearch(4, [1, 2, 3, 4, 5, 6, 7]))
