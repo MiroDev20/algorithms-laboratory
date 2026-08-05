@@ -80,3 +80,28 @@ pruebas. Aunque no se vaya a implementar en un entorno real, parto del
 principio de que si así fuera, la función debería ser autónoma. Se trata de una
 cuestión de diseño: la función debe ser capaz de cumplir su propósito de manera
 independiente.
+
+## Elemento no encontrado
+
+Estaba pensando en cómo manejar la excepción de elemento no encontrado.
+
+No sabía por dónde empezar, pero tenía claro que no quería más de un `return` en
+el código. Se lo comenté a DeepSeek y me mostró algo que, a partir de ahora,
+aplicaré a mis futuros algoritmos.
+
+En vez de poner el `return` al final del algoritmo, lo ubico justo cuando se
+cumple el objetivo del mismo. En el caso de binary search, es encontrar un
+número, y al
+final lanzaré un error indicando que no se ha encontrado el objetivo.
+
+Además, me mostró que podía eliminar el uso de la variable `localizad
+(booleano) terminando el bucle cuando`inicio` deje de ser menor o igual a
+`final`.
+
+Funciona porque si el elemento buscado es un número grande, como 60, en una
+lista del 1 al 20, siempre se estará moviendo `inicio` hacia delante hasta ser
+igual a
+`final`. Y si el número buscado fuera algo como -14 en esa misma lista, `final`
+se
+movería hacia atrás. En cualquier caso, `inicio` y `final` llegarán a ser
+iguales.
