@@ -19,7 +19,11 @@ export function linearSearch (target, array)
         {
             for (let i = 0; i < array.length; i++)
             {
-                if (array[i] === target)
+                if (typeof array[i] !== 'number')
+                {
+                    throw new Error("The array can only have 'number' types")
+                }
+                else if (array[i] === target)
                 {
                     return i;
                 }

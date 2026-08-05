@@ -46,8 +46,6 @@ test(
     1
 )
 
-// Prueba de mensajes de errores
-
 test(
     "Target es un string",
     () => ls("x", [1, 2, 3]),
@@ -58,4 +56,10 @@ test(
     "Array es un string",
     () => ls(5, "abc"),
     `An array was expected, but it was obtained string`
+)
+
+test(
+    "Array con tipos diferentes a 'number'",
+    () => ls(10, [2, 3, 4, 5, 6, "8", 10]),
+    "The array can only have 'number' types"
 )
