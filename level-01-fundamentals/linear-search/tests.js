@@ -28,7 +28,7 @@ function test(name, fn, expected)
 test(
     "Array vacío",
     () => ls(2, []),
-    -1
+    "Cannot search in an empty array"
 )
 
 test(
