@@ -1,4 +1,4 @@
-function binarySearch(target, array)
+export function binarySearch(target, array)
 {
     try
     {
@@ -43,6 +43,6 @@ function binarySearch(target, array)
     }
     catch(error)
     {
-        console.log(error.message);
+        return error.message
     }
 }
