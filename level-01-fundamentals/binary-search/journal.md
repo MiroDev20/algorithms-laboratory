@@ -105,3 +105,18 @@ igual a
 se
 movería hacia atrás. En cualquier caso, `inicio` y `final` llegarán a ser
 iguales.
+
+## Tests
+
+Los tests fueron implementados tomando como referencia los utilizados en
+**Linear Search**.
+
+Durante su desarrollo cometí un pequeño error relacionado con el alcance
+(*scope*) de las variables. Como los mensajes de error en `implementation.js`
+utilizan `typeof`, asumí erróneamente que podía hacer lo mismo en `tests.js`
+sin tener en cuenta que las variables deben existir dentro del mismo ámbito.
+
+Para solucionarlo, definí una variable llamada `string` en los tests y utilicé
+`typeof string` para generar el mensaje esperado. De esta forma, el valor
+obtenido por `typeof` coincide con el tipo del argumento que realmente se está
+pasando a la función.
