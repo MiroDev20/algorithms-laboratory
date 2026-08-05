@@ -4,16 +4,7 @@ const LOG = (item) => console.log(item)
 
 function test(name, fn, expected)
 {
-    let obtained;
-
-    try
-    {
-        obtained = fn();
-    }
-    catch (error)
-    {
-        obtained = error.message;
-    }
+    let obtained = fn();
     
     if (obtained === expected)
     {
@@ -40,7 +31,7 @@ test(
 test(
     "Elemento inexistente",
     () => ls(9, [3, 7, 0]),
-    -1
+    "Element not found"
 )
 
 test(

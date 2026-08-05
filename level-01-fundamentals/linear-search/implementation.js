@@ -1,27 +1,35 @@
 export function linearSearch (target, array)
 {
-    if (typeof target !== 'number')
+    try
     {
-        throw new Error(`A number was expected, but it was obtained ${typeof target}`)
-    }
-    else if (!Array.isArray(array))
-    {
-        throw new Error(`An array was expected, but it was obtained ${typeof array}`)
-    }
-
-    else if (array.length === 0)
-    {
-        throw new Error("Cannot search in an empty array")
-    }
-    else
-    {
-        for (let i = 0; i < array.length; i++)
+        if (typeof target !== 'number')
         {
-            if (array[i] === target)
+            throw new Error(`A number was expected, but it was obtained ${typeof target}`);
+        }
+        else if (!Array.isArray(array))
+        {
+            throw new Error(`An array was expected, but it was obtained ${typeof array}`);
+        }
+
+        else if (array.length === 0)
+        {
+            throw new Error("Cannot search in an empty array");
+        }
+        else
+        {
+            for (let i = 0; i < array.length; i++)
             {
-                return i
+                if (array[i] === target)
+                {
+                    return i;
+                }
             }
+
+            throw new Error("Element not found");
         }
     }
-    return -1
+    catch(error)
+    {
+        return error.message;
+    }
 }
