@@ -1,3 +1,7 @@
+// ⏳ TODO: agregar JSDoc a `linearSearch`
+// ⏳ TODO: añadir parámetro opcional: buscar desde el final
+// ⏳ TODO: reemplazar mensajes por otros más claros
+// ⏳ TODO: realizar una versión recursiva
 export function linearSearch (target, array)
 {
     try
