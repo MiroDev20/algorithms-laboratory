@@ -1,3 +1,7 @@
+// ⏳ TODO: verificar que los elementos del array sean números.
+// ⏳ TODO: reemplazar mensajes por otros más claros
+// ⏳ TODO: realizar una versión recursiva
+// ⏳ TODO: agregar JSDoc a `binarySearch`
 export function binarySearch(target, array)
 {
     try
