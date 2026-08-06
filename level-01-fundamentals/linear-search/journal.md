@@ -47,8 +47,8 @@ Y yo implementé:
 
 Al final me propuso otra solución más limpia: `typeof result === 'number' && result >= 0 ? result : result ?? -1`
 
-Dado que tengo frente a mí tres soluciones, tengo que evaluar la que provocó el problema
-y después sus dos posibles soluciones.
+Dado que tengo frente a mí tres soluciones, tengo que evaluar la que provocó el
+problema y después sus dos posibles soluciones.
 
 ## Responsable del problema
 
@@ -78,16 +78,21 @@ o es un string devuélvelo, sino devuelve -1.
 Traducido: si result es de tipo 'number' devuélvelo, sino
 ¿result es null/undefined? de serlo devuelve -1, caso contrario devuelve result.
 
-Creo que esta opción es mejor porque en vez de verificar si `typeof result === 'string'`
-verifica que sea diferente de null/undefined y además se elimina la comparación `result >= 0`
-la cual está de más y quise mantener en la primera solución solo porque la original (la que causó el problema)
-también lo hacía.
+Creo que esta opción es mejor porque en vez de verificar si
+`typeof result === 'string'` verifica que sea diferente de null/undefined y
+además se elimina la comparación `result >= 0` la cual está de más y quise
+mantener en la primera solución solo porque la original (la que causó el
+problema) también lo hacía.
 
 ## Throw Error
 
-Hablando con Claude sobre el estado del algoritmo, me recomendó usar `throw new Error()` en lugar de `console.log()`, ya que de esta manera se evita que el programa interprete como mensajes de consola lo que en realidad son errores de uso.
+Hablando con Claude sobre el estado del algoritmo, me recomendó usar
+`throw new Error()` en lugar de `console.log()`, ya que de esta manera se evita
+que el programa interprete como mensajes de consola lo que en realidad son
+errores de uso.
 
-Una vez reemplazados los `console.log()` por `throw new Error()`, no es necesaria la lógica del último `return`.
+Una vez reemplazados los `console.log()` por `throw new Error()`, no es
+necesaria la lógica del último `return`.
 
 Además, debería capturar los nuevos errores en los tests.
 
@@ -127,3 +132,77 @@ de `test` (algo como fun, callback o fn) después ejecutarla dentro de un bloque
 
 Todavía hay otras cosas que añadirle a este algoritmo, pero ya le he dedicado
 mucho, así que avanzaré al siguiente y volveré a este en un futuro.
+
+## JSDoc
+
+Estuve leyendo sobre esto y después le pedí a ChatGPT un ejercicio:
+
+```js
+function divide(dividend, divisor) {
+  if (typeof dividend !== "number" || typeof divisor !== "number") {
+    throw new TypeError("Both arguments must be numbers.");
+  }
+
+  if (divisor === 0) {
+    throw new Error("Cannot divide by zero.");
+  }
+
+  return dividend / divisor;
+}
+
+/*
+    Tu objetivo
+    Documenta la función incluyendo, como mínimo:
+    📝 Una descripción breve de lo que hace.
+    📥 @param para cada parámetro.
+    📤 @returns.
+    ⚠️ @throws para los errores que puede lanzar.
+    Bonus (opcional)
+    Si quieres ir un paso más allá, añade también:
+    @example con un ejemplo de uso.
+    Una descripción para cada parámetro y para el valor de retorno.
+*/
+```
+
+Así lo resolví:
+
+```js
+/**
+ * Divide a number
+ * 
+ * @param {number}  dividend - First number.
+ * @param {number} divisor - Second number.
+ * @returns {number} Quotient.
+ * @throw {TypeError} If any parameter is not a number type.
+ * @throw {Error} If the divisor is zero.
+ * 
+ * @example
+ * divide(10, 5) // 2
+*/
+function divide(dividend, divisor) {
+  if (typeof dividend !== "number" || typeof divisor !== "number") {
+    throw new TypeError("Both arguments must be numbers.");
+  }
+
+  if (divisor === 0) {
+    throw new Error("Cannot divide by zero.");
+  }
+
+  return dividend / divisor;
+}
+```
+
+Revisión de ChatGPT:
+
+| Aspecto     | Resultado                                       |
+|:-----------:|:------------------------------------------------|
+| Descripción | ⭐⭐⭐⭐☆                                     |
+| `@param`    | ⭐⭐⭐⭐⭐                                    |
+| `@returns`  | ⭐⭐⭐⭐⭐                                    |
+| `@throws`   | ⭐⭐⭐☆☆ (solo por el nombre de la etiqueta)  |
+| `@example`  | ⭐⭐⭐⭐⭐                                    |
+
+Puntuación: 9.5/10 🎉
+
+El único error real es usar @throw en lugar de @throws; lo demás son mejoras de
+claridad y estilo.
