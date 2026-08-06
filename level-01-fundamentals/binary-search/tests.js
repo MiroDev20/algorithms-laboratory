@@ -81,3 +81,9 @@ test(
     () => bs(2.5, [1.2, 2.5, 3.7]),
     1
 );
+
+test(
+    "Invalid types in array",
+    () => bs(5, [1, 2, 3, 4, "5", 6, 7, 8, 9]),
+    "El array solo puede contener números"
+)

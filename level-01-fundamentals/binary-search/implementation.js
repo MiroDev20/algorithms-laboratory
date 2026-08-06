@@ -1,4 +1,4 @@
-// ⏳ TODO: verificar que los elementos del array sean números.
+// 🎉 DONE: verificar que los elementos del array sean números.
 // ⏳ TODO: reemplazar mensajes por otros más claros
 // ⏳ TODO: realizar una versión recursiva
 // ⏳ TODO: agregar JSDoc a `binarySearch`
@@ -20,6 +20,14 @@ export function binarySearch(target, array)
         }
         else
         {
+            for(let i = 0; i < array.length; i ++)
+            {
+                if (typeof array[i] !== 'number')
+                {
+                    throw new TypeError("El array solo puede contener números");
+                }
+            }
+
             let mid;
 
             let start = 0;
