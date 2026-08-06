@@ -19,25 +19,25 @@ const string = "abc";
 test(
     "Target input validation: is not a number",
     () => bs(string, [1, 2, 3]),
-    `Se esperaba un número, pero se recibió ${typeof string}`
+    `El valor buscado debe ser un número. Tipo recibido: ${typeof string}`
 );
 
 test(
     "Array input validation: is not an array",
     () => bs(2, string),
-    `Se esperaba un array, pero se recibió ${typeof string}`
+    `El segundo argumento debe ser un array. Tipo recibido: ${typeof string}`
 );
 
 test(
     "Array input validation: is empty",
     () => bs(2, []),
-    `El array está vacío`
+    "No se puede realizar búsquedas en un array vacío"
 );
 
 test(
     "Element not found",
     () => bs(10, [1, 2, 3]),
-    "Elemento no encontrado"
+    "El elemento 10 no se encuentra en el array"
 );
 
 test(
@@ -67,7 +67,7 @@ test(
 test(
     "Single element array: not found",
     () => bs(5, [10]),
-    "Elemento no encontrado"
+    `El elemento 5 no se encuentra en el array`
 );
 
 test(
@@ -85,5 +85,5 @@ test(
 test(
     "Invalid types in array",
     () => bs(5, [1, 2, 3, 4, "5", 6, 7, 8, 9]),
-    "El array solo puede contener números"
+    "Todos los elementos del array deben ser números. Elemento no válido encontrado en el índice 4: string"
 )
